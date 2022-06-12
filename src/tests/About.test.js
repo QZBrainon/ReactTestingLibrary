@@ -5,7 +5,6 @@ import About from '../pages/About';
 
 beforeEach(() => {
   renderWithRouter(<About />);
-  console.log('estou executando');
 });
 
 test('Teste se a página contém um heading `h2` com o texto About Pokédex', () => {
