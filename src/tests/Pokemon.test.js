@@ -9,6 +9,7 @@ describe('Testando o componente Pokemon', () => {
   const pikachu = pokemons[0];
   const { id, name, type, averageWeight: { value, measurementUnit }, image } = pikachu;
   const averageWeight = `Average weight: ${value} ${measurementUnit}`;
+
   test('Testa se as informações do pokemon aparecem na tela', () => {
     renderWithRouter(<App />);
     const pokemonName = screen.getByText(`${name}`);
@@ -23,11 +24,13 @@ describe('Testando o componente Pokemon', () => {
     expect(imageEl).toBeInTheDocument();
     expect(imageEl).toHaveProperty('src', image); // use property instead of attribute
   });
+
   test('Testa se o link possui url /pokemons/<id>', () => {
     renderWithRouter(<App />);
     const detailsLink = screen.getByRole('link', { name: /more details/i });
     expect(detailsLink.href).toContain(`pokemons/${id}`);
   });
+
   test('Testa se a aplicação é redirecionada ao clicar no link', () => {
     const { history } = renderWithRouter(<App />);
     const detailsLink = screen.getByRole('link', { name: /more details/i });
@@ -35,6 +38,7 @@ describe('Testando o componente Pokemon', () => {
     const { location: { pathname } } = history;
     expect(pathname).toBe(`/pokemons/${id}`);
   });
+
   test('Testa se existe uma estrela nos pokemons favoritados', () => {
     const { history } = renderWithRouter(<App />);
     const detailsLink = screen.getByRole('link', { name: /more details/i });
